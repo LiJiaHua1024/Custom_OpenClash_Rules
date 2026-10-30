@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1069
+# TOTAL: 1076
 
 payload:
   - DOMAIN-KEYWORD,m-team
@@ -251,6 +251,7 @@ payload:
   - DOMAIN-SUFFIX,deepzero.com
   - DOMAIN-SUFFIX,dell.com
   - DOMAIN-SUFFIX,dfhog.com
+  - DOMAIN-SUFFIX,dg3yy.com
   - DOMAIN-SUFFIX,dhub.kubesre.xyz
   - DOMAIN-SUFFIX,diandaojia.net
   - DOMAIN-SUFFIX,dingdingzn.com
@@ -556,6 +557,7 @@ payload:
   - DOMAIN-SUFFIX,kgithub.com
   - DOMAIN-SUFFIX,kit327.com
   - DOMAIN-SUFFIX,kiwiot.com
+  - DOMAIN-SUFFIX,kke.com.hk
   - DOMAIN-SUFFIX,kldai.vip
   - DOMAIN-SUFFIX,kmeila.com
   - DOMAIN-SUFFIX,koebpmhcce.com
@@ -694,6 +696,7 @@ payload:
   - DOMAIN-SUFFIX,paijitang.com
   - DOMAIN-SUFFIX,pailedi.com
   - DOMAIN-SUFFIX,panjue.com
+  - DOMAIN-SUFFIX,paojiaoyun.com
   - DOMAIN-SUFFIX,paperang.com
   - DOMAIN-SUFFIX,passnat.com
   - DOMAIN-SUFFIX,pcwatch.com
@@ -870,6 +873,8 @@ payload:
   - DOMAIN-SUFFIX,tongkask.com
   - DOMAIN-SUFFIX,tongxids.com
   - DOMAIN-SUFFIX,tool56.com
+  - DOMAIN-SUFFIX,topkee.com
+  - DOMAIN-SUFFIX,topkee.top
   - DOMAIN-SUFFIX,topwd.top
   - DOMAIN-SUFFIX,touchgal.ink
   - DOMAIN-SUFFIX,touchgaloss.com
@@ -903,6 +908,7 @@ payload:
   - DOMAIN-SUFFIX,vcltrade.com
   - DOMAIN-SUFFIX,vgogbuy.com
   - DOMAIN-SUFFIX,vip-cdn.com
+  - DOMAIN-SUFFIX,vip666ai.com
   - DOMAIN-SUFFIX,vipjiapu.com
   - DOMAIN-SUFFIX,visionariopro.com
   - DOMAIN-SUFFIX,vlan5.com
@@ -1006,6 +1012,7 @@ payload:
   - DOMAIN-SUFFIX,yingshi.dog
   - DOMAIN-SUFFIX,yiso.fun
   - DOMAIN-SUFFIX,yixc.com
+  - DOMAIN-SUFFIX,yixlab.com
   - DOMAIN-SUFFIX,yldw.net
   - DOMAIN-SUFFIX,ymwfy.com
   - DOMAIN-SUFFIX,ymzec.com
