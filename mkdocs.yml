@@ -1,0 +1,38 @@
+site_name: Wiki
+site_url: https://aethersailor.github.io/Custom_OpenClash_Rules/
+docs_dir: wiki
+nav:
+  - Home: README.md
+  - 快速开始:
+      - OpenClash 设置方案: 1.OpenClash-设置方案.md
+      - OpenWrt IPv6 设置方案: 2.OpenWrt-IPv6-设置方案.md
+  - 资源与贡献:
+      - 其他说明: 3.其他说明.md
+  - 故障排除:
+      - 常见问题与诊断: 4.故障排除.md
+  - 进阶阅读:
+      - 一些零碎的教程:
+          - 教程汇总: 5.一些零碎的教程.md
+          - 固件扩容: /Custom_OpenClash_Rules/5.一些零碎的教程/#firmware-expansion
+          - Tailscale 子网互通: /Custom_OpenClash_Rules/5.一些零碎的教程/#tailscale-subnets
+          - AdGuard Home 设置方案: 6.AdGuard-Home-设置方案.md
+      - 关于“旁路由”的一些吐槽: 7.关于“旁路由”的一些吐槽.md
+      - 其他推荐项目: 8.其他推荐项目.md
+  - 历史归档:
+      - Smart 内核相关说明（已归档）: 9.OpenClash-零碎教程.md
+      - 无插件广告拦截方案（已归档）: 10.无插件广告拦截功能设置方案.md
+theme:
+  name: material
+plugins:
+  - search
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - admonition
+  - def_list
+  - footnotes
+  - attr_list
+  - md_in_html
+extra_javascript:
+  - assets/wiki-link-rewrite.js

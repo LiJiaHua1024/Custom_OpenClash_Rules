@@ -1,41 +1,78 @@
 #!/bin/sh
 
-# 判断 CPU 架构
-arch=$(uname -m)
-if [ "$arch" != "x86_64" ]; then
-    echo "非 x86 架构，无法判断 GOAMD64 等级"
-    exit 0
-fi
-
-# 读取 CPU flags
-flags=$(grep -m1 -o -E 'flags\s*:.*' /proc/cpuinfo | cut -d: -f2)
-
-# 判断 v4 (AVX512)
-if echo "$flags" | grep -qE 'avx512f'; then
-    echo "GOAMD64=v4"
-    exit 0
-fi
-
-# 判断 v3 (AVX/AVX2 等)
-if echo "$flags" | grep -qE 'avx'; then
-    if echo "$flags" | grep -qE 'avx2' && \
-       echo "$flags" | grep -qE 'bmi1' && \
-       echo "$flags" | grep -qE 'bmi2'; then
-        echo "GOAMD64=v3"
-        exit 0
+detect_mips_float() {
+    if grep -qiE 'FPU[[:space:]]*:[[:space:]]*(yes|present)' /proc/cpuinfo 2>/dev/null; then
+        printf '%s\n' "hardfloat"
+    else
+        printf '%s\n' "softfloat"
     fi
-fi
+}
 
-# 判断 v2 (SSE4.2 / SSE3 / POPCNT 等)
-if echo "$flags" | grep -qE 'sse4_2' && \
-   echo "$flags" | grep -qE 'sse4_1' && \
-   echo "$flags" | grep -qE 'ssse3' && \
-   echo "$flags" | grep -qE 'sse3' && \
-   echo "$flags" | grep -qE 'popcnt'; then
-    echo "GOAMD64=v2"
-    exit 0
-fi
+detect_loongarch_abi() {
+    kernel_ver=$(uname -r | cut -d. -f1,2)
+    major=${kernel_ver%%.*}
+    minor=${kernel_ver#*.}
 
-# 默认 v1
-echo "GOAMD64=v1"
-exit 0
+    if [ "$major" -gt 5 ] || { [ "$major" -eq 5 ] && [ "$minor" -ge 19 ]; }; then
+        printf '%s\n' "abi2"
+    else
+        printf '%s\n' "abi1"
+    fi
+}
+
+has_cpu_flag() {
+    flag=$1
+    printf ' %s ' "$CPU_FLAGS" | grep -q " $flag "
+}
+
+has_all_cpu_flags() {
+    for flag in "$@"; do
+        has_cpu_flag "$flag" || return 1
+    done
+}
+
+detect_amd64_level() {
+    CPU_FLAGS=${CPU_FLAGS_OVERRIDE:-$(grep -m1 -E '^flags[[:space:]]*:' /proc/cpuinfo 2>/dev/null | cut -d: -f2)}
+
+    if has_all_cpu_flags cx16 lahf_lm popcnt pni sse4_1 sse4_2 ssse3 &&
+        has_all_cpu_flags avx avx2 bmi1 bmi2 f16c fma movbe &&
+        { has_cpu_flag lzcnt || has_cpu_flag abm; }; then
+        printf '%s\n' "linux-amd64-v3"
+    elif has_all_cpu_flags cx16 lahf_lm popcnt pni sse4_1 sse4_2 ssse3; then
+        printf '%s\n' "linux-amd64-v2"
+    else
+        printf '%s\n' "linux-amd64-v1"
+    fi
+}
+
+map_arch() {
+    arch=$1
+
+    case "$arch" in
+        x86_64) detect_amd64_level ;;
+        i386 | i486 | i586 | i686) printf '%s\n' "linux-386" ;;
+        aarch64 | arm64) printf '%s\n' "linux-arm64" ;;
+        armv7l | armv7) printf '%s\n' "linux-armv7" ;;
+        armv6l | armv6) printf '%s\n' "linux-armv6" ;;
+        armv5tel | armv5) printf '%s\n' "linux-armv5" ;;
+        mips64) printf '%s\n' "linux-mips64" ;;
+        mips64el) printf '%s\n' "linux-mips64le" ;;
+        mips) printf 'linux-mips-%s\n' "$(detect_mips_float)" ;;
+        mipsel) printf 'linux-mipsle-%s\n' "$(detect_mips_float)" ;;
+        loongarch64) printf 'linux-loong64-%s\n' "$(detect_loongarch_abi)" ;;
+        riscv64) printf '%s\n' "linux-riscv64" ;;
+        s390x) printf '%s\n' "linux-s390x" ;;
+        *)
+            printf 'unsupported architecture: %s\n' "$arch" >&2
+            return 1
+            ;;
+    esac
+}
+
+case "${1:-}" in
+    "") map_arch "${CPU_ARCH_OVERRIDE:-$(uname -m)}" ;;
+    *)
+        printf 'usage: %s\n' "$0" >&2
+        exit 2
+        ;;
+esac
