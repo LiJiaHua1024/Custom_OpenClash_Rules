@@ -23,7 +23,9 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
-      - name: Merge and validate upstream
+      - name: Check upstream update behavior
+        run: node .github/scripts/test-upstream-update.cjs
+      - name: Apply and validate upstream changes
         id: merge
         shell: bash
         run: |
@@ -34,18 +36,16 @@ jobs:
           upstream=$(git rev-parse FETCH_HEAD)
           before=$(git rev-parse HEAD)
           echo "before=$before" >> "$GITHUB_OUTPUT"
-          if git merge-base --is-ancestor "$upstream" HEAD; then
+          previous=$(tr -d '\r\n' < .upstream-sync/last-upstream-commit)
+          if [ "$upstream" = "$previous" ]; then
             echo 'merged=false' >> "$GITHUB_OUTPUT"
             exit 0
           fi
           cp .github/scripts/check-personal-config.cjs "$RUNNER_TEMP/check-personal-config.cjs"
-          if ! git merge --no-commit --no-ff "$upstream"; then
-            echo 'Upstream merge has conflicts; nothing was pushed.' >&2
-            exit 1
-          fi
+          bash .github/scripts/apply-upstream-update.sh "$upstream"
           node "$RUNNER_TEMP/check-personal-config.cjs"
           git diff --check --cached -- cfg/Custom_Clash.ini cfg/Custom_Clash_Mainland.ini
-          git commit -m 'chore: merge upstream updates'
+          git commit -m 'chore: sync upstream updates'
           git push origin HEAD:main
           echo 'merged=true' >> "$GITHUB_OUTPUT"
 
