@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1152
+# TOTAL: 1161
 
 payload:
   - '+.00333118.com'
@@ -69,6 +69,7 @@ payload:
   - '+.847ds.com'
   - '+.85sc.com'
   - '+.86656.net'
+  - '+.870833.com'
   - '+.888lm02.com'
   - '+.88996api.cloud'
   - '+.8kc.top'
@@ -178,6 +179,7 @@ payload:
   - '+.boxim.online'
   - '+.boxkj.com'
   - '+.boyuemobile.com'
+  - '+.bro.pw'
   - '+.browserscan.net'
   - '+.bs-iot.com'
   - '+.bsbsb.top'
@@ -252,6 +254,7 @@ payload:
   - '+.crtyhr.com'
   - '+.csqaq.com'
   - '+.csrqoa.com'
+  - '+.ctzpj.com'
   - '+.cyberpig.tech'
   - '+.cydiabc.top'
   - '+.cym520.top'
@@ -273,6 +276,7 @@ payload:
   - '+.dell.com'
   - '+.dfhog.com'
   - '+.dg3yy.com'
+  - '+.dggdjt.com'
   - '+.dhjsnx.com'
   - '+.dhub.kubesre.xyz'
   - '+.diandaojia.net'
@@ -355,6 +359,7 @@ payload:
   - '+.ft07.com'
   - '+.ftqq.com'
   - '+.ftsup.com'
+  - '+.fullo.top'
   - '+.functorz.com'
   - '+.funlinkads.com'
   - '+.funmob.top'
@@ -379,6 +384,7 @@ payload:
   - '+.geektool.top'
   - '+.gegeselect.hk'
   - '+.gelaiyun.net'
+  - '+.gexuanyi.top'
   - '+.ggbond.org'
   - '+.gh-proxy.com'
   - '+.gh.con.sh'
@@ -446,6 +452,7 @@ payload:
   - '+.haimaiedu.net'
   - '+.halvie.com'
   - '+.ham.xin'
+  - '+.hanbodianzi.com'
   - '+.handfree.work'
   - '+.hangnakeji.com'
   - '+.hanoking.com'
@@ -823,6 +830,7 @@ payload:
   - '+.rewards.bing.com'
   - '+.rkgamingstore.com'
   - '+.ro1029mango.com'
+  - '+.rocrp.net'
   - '+.royqh.net'
   - '+.rsfcxq.com'
   - '+.rsmods.cc'
@@ -990,6 +998,7 @@ payload:
   - '+.vlan5.com'
   - '+.volcanomob.com'
   - '+.vpsjyz.com'
+  - '+.vryfh.top'
   - '+.vtools.online'
   - '+.vv1865.com'
   - '+.vvhan.com'
