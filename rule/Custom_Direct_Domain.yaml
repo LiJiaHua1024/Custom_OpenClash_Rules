@@ -1,7 +1,7 @@
 # Generated from rule/Custom_Direct.list
 # REPO: https://github.com/Aethersailor/Custom_OpenClash_Rules
 # SOURCE: https://github.com/Aethersailor/Custom_OpenClash_Rules/blob/main/rule/Custom_Direct.list
-# TOTAL: 1189
+# TOTAL: 1192
 
 payload:
   - '+.00333118.com'
@@ -214,6 +214,7 @@ payload:
   - '+.cgicop.com'
   - '+.changjirb.com'
   - '+.changzhi.top'
+  - '+.chaoway.net'
   - '+.chatlabs.net'
   - '+.chaxunjiao.com'
   - '+.chaz.fun'
@@ -232,6 +233,7 @@ payload:
   - '+.chuguansmart.com'
   - '+.chujingapp.com'
   - '+.chushi.cool'
+  - '+.chyqaq.online'
   - '+.ciallo.party'
   - '+.cilizhai.net'
   - '+.cindy.app'
@@ -647,6 +649,7 @@ payload:
   - '+.lg3000.top'
   - '+.lhndksn.com'
   - '+.lianguo-tech.com'
+  - '+.liangyuji.com'
   - '+.libtv.com'
   - '+.lightmake.site'
   - '+.linka2a.net'
